@@ -1,6 +1,4 @@
-syn:
-	genus -legacy_ui -no_gui -execute "source ./scripts/syn_LIF-neuron.tcl; exit" 2>&1 | \
-	tee run_syn.LIF-neuron.`date +%Y-%m-%d-%H%M%S`.log
+all: base
 
 base:
 	genus -legacy_ui -no_gui -execute "source ./scripts/genus_base.tcl; exit" 2>&1 | \

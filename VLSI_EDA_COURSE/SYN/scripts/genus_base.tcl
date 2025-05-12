@@ -28,6 +28,7 @@ set _LOG_PATH ./logs_basic
 ##set_attribute super_thread_servers {<machine names>} /
 ##For design size of 1.5M - 5M gates, use 8 to 16 CPUs. For designs > 5M gates, use 16 to 32 CPUs
 #HS
+set_db common_ui false
 set_attribute max_cpus_per_server 8 /
 
 ##Default undriven/unconnected setting is 'none'.  
@@ -70,7 +71,7 @@ set_attribute avoid true [find / -libcell CLK*]
 #HS
 set myFiles [list LIF/LIF_neuron.v ]         ;# All HDL files
 set myClk clk                    ;# clock name
-set myPeriod_ps 5000             ;# Clock period in ps
+set myPeriod_ps 10000             ;# Clock period in ps
 set myInDelay_ns 0.1             ;# delay from clock to inputs valid
 set myOutDelay_ns 0.1            ;# delay from clock to output valid
 set runname v2_32                  ;# name appended to output files
