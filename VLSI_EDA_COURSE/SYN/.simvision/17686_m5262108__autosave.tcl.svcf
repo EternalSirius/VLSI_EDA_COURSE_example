@@ -1,0 +1,404 @@
+
+#
+# Preferences
+#
+preferences set plugin-enable-svdatabrowser-new 1
+preferences set plugin-enable-groupscope 0
+preferences set plugin-enable-interleaveandcompare 0
+preferences set plugin-enable-waveformfrequencyplot 0
+
+#
+# Databases
+#
+database require waves_layout -search {
+	../SIM/waves_layout.shm/waves_layout.trn
+	/home/grd/m5262108/Work/VLSI_EDA/SIM/waves_layout.shm/waves_layout.trn
+}
+database require waves_rtl -search {
+	../SIM/waves_rtl.shm/waves_rtl.trn
+	/home/grd/m5262108/Work/VLSI_EDA/SIM/waves_rtl.shm/waves_rtl.trn
+}
+database require waves_gate -search {
+	../SIM/waves_gate.shm/waves_gate.trn
+	/home/grd/m5262108/Work/VLSI_EDA/SIM/waves_gate.shm/waves_gate.trn
+}
+
+#
+# Mnemonic Maps
+#
+mmap new  -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new  -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+#
+# Waveform windows
+#
+if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1280x657+0+23}] != ""} {
+    window geometry "Waveform 1" 1280x657+0+23
+}
+window target "Waveform 1" on
+waveform using {Waveform 1}
+waveform sidebar select designbrowser
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 175 \
+    -units ns \
+    -valuewidth 75
+waveform baseline set -time 0
+
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.clk
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.i
+	} ]
+set id [waveform add -signals  {
+	{waves_rtl::TB_LIF_neuron.i_State[3:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.i_svalid
+	} ]
+set id [waveform add -signals  {
+	{waves_rtl::TB_LIF_neuron.i_wspike[2:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.j
+	} ]
+set id [waveform add -signals  {
+	{waves_rtl::TB_LIF_neuron.o_V[5:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.o_spike
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.r_timestep_cnt
+	} ]
+set id [waveform add -signals  {
+	waves_rtl::TB_LIF_neuron.rst_n
+	} ]
+set id [waveform add -signals  {
+	{waves_rtl::TB_LIF_neuron.w_Thres[5:0]}
+	} ]
+set id [waveform add -cdivider divider]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.clk
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.i
+	} ]
+set id [waveform add -signals  {
+	{waves_layout::TB_LIF_neuron.i_State[3:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.i_svalid
+	} ]
+set id [waveform add -signals  {
+	{waves_layout::TB_LIF_neuron.i_wspike[2:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.j
+	} ]
+set id [waveform add -signals  {
+	{waves_layout::TB_LIF_neuron.o_V[5:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.o_spike
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.r_timestep_cnt
+	} ]
+set id [waveform add -signals  {
+	waves_layout::TB_LIF_neuron.rst_n
+	} ]
+set id [waveform add -signals  {
+	{waves_layout::TB_LIF_neuron.w_Thres[5:0]}
+	} ]
+
+waveform xview limits 0 666ns
+
+if {[catch {window new WaveWindow -name "Waveform 2" -geometry 1280x657+0+23}] != ""} {
+    window geometry "Waveform 2" 1280x657+0+23
+}
+waveform using {Waveform 2}
+waveform sidebar visibility partial
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 197 \
+    -units ns \
+    -valuewidth 75
+waveform baseline set -time 0
+
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.clk
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.LIF0.i_State[3:0]}
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.LIF0.i_Thres[5:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.i_Thres_valid
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.i_recc
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.i_svalid
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.LIF0.i_wspike[2:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_0
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_1
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_2
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_3
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_4
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_5
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_6
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_8
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_10
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_11
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_12
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_13
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_14
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_15
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_16
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_17
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_18
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_19
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_20
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_21
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_22
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_23
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_24
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_25
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_26
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_27
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_28
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_29
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_30
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_31
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_32
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_33
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_34
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_35
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_36
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_37
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_38
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_39
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_40
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_41
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_42
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_43
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_44
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_50
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_51
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_52
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_53
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_54
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_55
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_58
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_59
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_60
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_61
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_62
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.n_63
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.LIF0.o_V[5:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.o_spike
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.LIF0.r_refrac[3:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.rc_gclk
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.LIF0.rst_n
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.i_wspike[2:0]}
+	} ]
+
+waveform xview limits 0 75ns
+
+if {[catch {window new WaveWindow -name "Waveform 3" -geometry 1010x600+86+76}] != ""} {
+    window geometry "Waveform 3" 1010x600+86+76
+}
+waveform using {Waveform 3}
+waveform sidebar visibility partial
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 175 \
+    -units ns \
+    -valuewidth 75
+waveform baseline set -time 0
+
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.clk
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.i
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.i_State[3:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.i_svalid
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.i_wspike[2:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.j
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.o_V[5:0]}
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.o_spike
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.r_timestep_cnt
+	} ]
+set id [waveform add -signals  {
+	waves_gate::TB_LIF_neuron.rst_n
+	} ]
+set id [waveform add -signals  {
+	{waves_gate::TB_LIF_neuron.w_Thres[5:0]}
+	} ]
+
+waveform xview limits 0 689ns
+
+#
+# Waveform Window Links
+#
+
+#
+# Console windows
+#
+console set -windowname Console
+window geometry Console 600x250+0+0
+
+#
+# Layout selection
+#

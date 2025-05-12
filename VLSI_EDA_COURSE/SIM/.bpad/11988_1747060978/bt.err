@@ -1,0 +1,12 @@
+/eda/cadence/2022-23/RHELx86/XCELIUM_22.03.005/tools.lnx86/inca/bin/xmsim
+Obtained 10 stack frames.
+/eda/cadence/2022-23/RHELx86/XCELIUM_22.03.005/tools.lnx86/inca/bin/../../lib/libcbreakpad.so(_Z13use_backtracev+0xa1) [0xf7adf2b0]
+/eda/cadence/2022-23/RHELx86/XCELIUM_22.03.005/tools.lnx86/inca/bin/../../lib/libcbreakpad.so(cbpad_generate_dump_on_demand+0x90) [0xf7adf62b]
+xmsim() [0x947eef2]
+xmsim(serror+0x1a) [0x94806ba]
+xmsim() [0x86dd16c]
+xmsim() [0x86dda43]
+linux-gate.so.1(__kernel_rt_sigreturn+0) [0xf7fcb150]
+[0xd9ccaec]
+[0xffe87cd8]
+xmsim() [0x88715c3]

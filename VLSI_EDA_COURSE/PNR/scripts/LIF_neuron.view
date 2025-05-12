@@ -1,0 +1,8 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_library_set -name slow -timing { /eda/PDK_DIR/TSMC/180_DIG_CELL/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcb018g3d3_280a/tcb018g3d3wc.lib /eda/PDK_DIR/TSMC/180_DIG_CELL/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tpz973gv_280a/tpz973gvwc.lib }
+create_constraint_mode -name timing_cons -sdc_files ../SYN/outputs_basic/${DESIGN}_m.sdc
+create_rc_corner -name RcCorner -cap_table /eda/PDK_DIR/TSMC/180_DIG_CELL/TSMCHOME/digital/Back_End/lef/tcb018g3d3_280a/techfiles/captable/t018lo_1p6m_typical.captable
+create_delay_corner -name default -library_set {slow} -rc_corner {RcCorner}
+create_analysis_view -name ana_1 -constraint_mode {timing_cons} -delay_corner {default}
+set_analysis_view -setup {ana_1} -hold {ana_1}
